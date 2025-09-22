@@ -12,7 +12,7 @@ if (!$conn) {
 }
 
 $sql = "INSERT INTO users (id, name, email, phone )
-VALUES ('190151','Fidel Onunga', 'onungafidel374@gmail.com', '0713468861')";
+VALUES ('190567','Fidel ', 'onungafidel374@gmail.com', '0713468861')";
 
 if (mysqli_query($conn, $sql)) {
   echo "New record created successfully";

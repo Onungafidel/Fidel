@@ -70,7 +70,6 @@ function sendWelcomeEmail($userEmail, $userName) {
           $mail->isHTML(true);
           $mail->Subject = 'Welcome to our BBIT Server';
           $mail->Body    = "<h1>Welcome, $userName!</h1><p>Thank you for joining our application. We're excited to have you on board!</p>";
-          $mail->AltBody = "Welcome, $userName! Thank you for joining our application. We're excited to have you on board!";
 
           $mail->send();
           return true;

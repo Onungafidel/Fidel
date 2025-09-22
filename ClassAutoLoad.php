@@ -1,19 +1,25 @@
 <?php
-require 'conf.php';
+require_once 'conf.php'; // Include configuration file
 
-// autoload classes from specified directories
-$directory = ["Forms", "Globals", "Layouts"];
+// Directories to search for class files
+$directories = ["Forms", "Layouts", "Globals", "Proc", "Fncs"];
 
-spl_autoload_register(function ($class_name) use ($directory) {
-    foreach ($directory as $dir) {
-        $file = __DIR__ . "/$dir/" . $class_name . '.php';
-        if (file_exists($file)) {
-            require_once $file;
+// Autoload classes from specified directories
+spl_autoload_register(function ($className) use ($directories) {
+    foreach ($directories as $directory) {
+        $filePath = __DIR__ . "/$directory/" . $className . '.php';
+        if (file_exists($filePath)) {
+            require_once $filePath;
             return;
         }
     }
 });
 
-// create an instance of the class
-$layouts = new layouts($conf);
-$forms = new forms();
+// Instantiate objects
+$ObjSendMail = new SendMail();
+$ObjForm = new forms();
+$ObjLayout = new layouts();
+$ObjAuth = new Auth($conf);
+$ObjFncs = new fncs();
+
+$ObjAuth->signup($conf, $ObjFncs, $lang, $ObjSendMail);
